@@ -5,7 +5,7 @@ import AddContact from './AddContact';
 import ContactList from './ContactList';
 
 function App() {
-  const LOCAL_STORAGE_key = "contacts";
+  let LOCAL_STORAGE_key = "contacts";
   const[contacts,setContacts] = useState([]);
 
   const AddContactHandler = (contact) => {
@@ -26,14 +26,23 @@ function App() {
     setContacts(contacts.filter(el => el.id !== id));
     localStorage.setItem(LOCAL_STORAGE_key,JSON.stringify(contacts));
   }
-
+  function updateContactHandler(id){
+    setContacts(contacts.map(el =>{
+      if (el.id == id){
+        el.name = el.name + ' update'
+        el.email = el.email + ' update'
+      }
+      return el;
+    } ));    
+    localStorage.setItem(LOCAL_STORAGE_key,JSON.stringify(contacts));
+  }
 
 
   return (
     <div className="ui container">
       <Header/>
     <AddContact addContactHandler={AddContactHandler}/><br></br>
-     <ContactList deleteRow={deleteContactHandlerRow} contacts={contacts} />
+     <ContactList  update ={updateContactHandler} deleteRow={deleteContactHandlerRow} contacts={contacts} />
     </div>
   );
 }

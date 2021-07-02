@@ -15,9 +15,7 @@ class AddContact extends React.Component {
         
       }
       var amitG=(JSON.parse(localStorage.getItem("contacts")) && (JSON.parse(localStorage.getItem("contacts")).length) + 1)
-      this.state["id"]=amitG
-      console.log("fuhsugh",amitG,this.state)
-  
+      this.state["id"]=amitG  
       this.props.addContactHandler(this.state);
       this.setState({name:"",email:""});
     };
@@ -27,14 +25,14 @@ class AddContact extends React.Component {
     render() {
         return (
             
-            <div className="ui main">
+            <div className="form-group">
             
             <h2>Add Contact</h2>
             <form className="ui form" onSubmit={this.add}>
             <div className="field">
             <label>Name</label>
             <input type="text"
-             name="name" 
+             name="form-control"
              placeholder="Name"
              value={this.state.name}
               onChange={ (e) => this.setState({ name: e.target.value })}
@@ -51,7 +49,7 @@ class AddContact extends React.Component {
             
             </div>
               <br/>
-            <button className="ui button blue">Add</button>
+            <button class="btn btn-primary">Add</button>
             
             
             </form>

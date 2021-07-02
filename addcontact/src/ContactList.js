@@ -4,26 +4,25 @@ import React  from "react";
 const LOCAL_STORAGE_key = "contacts";
 
 const ContactList = (props) => {
-   
+  console.log(props)   
     return(
-      <table border="1">
+      <table  class="table">
         <tr>
-          <th>sr no</th>
-          <th>name</th>
+          <th scope="col">name</th>
 
-          <th>email</th>
+          <th scope="col">email</th>
         </tr>
         { 
         props.contacts.map((contact,index)  =>
           {
             return(
               <tr> 
-              <td>{index+1}</td>
-
                 <td>{contact.name}</td>
                 <td>{contact.email}</td>
-                <td><button onClick={()=>props.deleteRow(contact.id)} > Delete</button></td>
+                <td><button class="btn btn-danger" onClick={()=>props.deleteRow(contact.id)} > Delete</button></td>
+                <td><button class="btn btn-dark" onClick={()=> props.update(contact.id)}>update</button></td>
               </tr>
+
             )
             } ) 
         }
